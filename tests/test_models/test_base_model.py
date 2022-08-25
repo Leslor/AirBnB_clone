@@ -18,10 +18,11 @@ class test_basemodel(unittest.TestCase):
         self.name = 'BaseModel'
         self.value = BaseModel
 
+    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def setUp(self):
         """ """
         pass
-
+    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def tearDown(self):
         try:
             os.remove('file.json')
@@ -74,22 +75,26 @@ class test_basemodel(unittest.TestCase):
         n = {None: None}
         with self.assertRaises(TypeError):
             new = self.value(**n)
+    
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def test_kwargs_one(self):
         """ """
         n = {'Name': 'test'}
         with self.assertRaises(KeyError):
             new = self.value(**n)
+
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def test_id(self):
         """ """
         new = self.value()
         self.assertEqual(type(new.id), str)
+
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def test_created_at(self):
         """ """
         new = self.value()
         self.assertEqual(type(new.created_at), datetime.datetime)
+
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def test_updated_at(self):
         """ """

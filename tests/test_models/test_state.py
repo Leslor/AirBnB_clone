@@ -18,7 +18,7 @@ class test_state(unittest.TestCase):
     """ """
     cursor = None
 
-    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") != 'db', "not testing db storage")
+    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") != 'db', "not testing fl storage")
     def setUp(self):
         conn = MySQLdb.connect(**conn_params)
         test_state.cursor = conn.cursor()

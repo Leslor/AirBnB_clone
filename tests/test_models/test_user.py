@@ -51,7 +51,7 @@ class test_User(unittest.TestCase):
         test_User.cursor.execute(query)
 
 
-    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") != 'db', "not testing fl storage")
+    @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") != 'db', "not testing db storage")
     def test_sql(self):
         
         query = "SELECT COUNT(*) FROM users"

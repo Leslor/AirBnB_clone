@@ -33,6 +33,7 @@ class test_Place(test_basemodel):
         """ """
         new = self.value()
         self.assertEqual(type(new.description), str)
+
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def test_number_rooms(self):
         """ """
@@ -58,11 +59,13 @@ class test_Place(test_basemodel):
         """ """
         new = self.value()
         self.assertEqual(type(new.latitude), float)
+
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def test_longitude(self):
         """ """
         new = self.value()
         self.assertEqual(type(new.latitude), float)
+
     @unittest.skipIf(os.getenv("HBNB_TYPE_STORAGE") == 'db', "not testing fl storage")
     def test_amenity_ids(self):
         """ """
