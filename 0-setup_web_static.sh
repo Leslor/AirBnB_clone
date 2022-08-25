@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#Bash script that sets up your web servers for the deployment of web_static
+
 sudo apt update
 sudo apt -y install dpkg
 #Install Nginx if it not already installed
