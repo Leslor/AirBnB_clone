@@ -19,5 +19,5 @@ def do_pack():
     try:
         local("tar -cvzf versions/{} web_static".format(file_name))
         return file_name
-    except:
+    except Exception:
         return None
