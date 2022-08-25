@@ -16,5 +16,8 @@ def do_pack():
     folder_version = exists("versions")
     if folder_version is False:
         local('mkdir -p versions')
-    local("tar -cvzf versions/{} web_static".format(file_name))
-    return file_name
+    try:
+        local("tar -cvzf versions/{} web_static".format(file_name))
+        return file_name
+    except:
+        return None
