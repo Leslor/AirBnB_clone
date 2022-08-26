@@ -13,7 +13,7 @@ def do_pack():
     of your AirBnB Clone repo,
     using the function do_pack. """
     today = datetime.now().strftime("%Y%m%d%H%M%S")
-    file_name = f'versions/web_static_{today}.tgz'
+    file_name = 'versions/web_static_{}.tgz'.format(today)
 
     folder_version = exists("versions")
     if folder_version is False:
