@@ -29,24 +29,28 @@ def do_deploy(archive_path):
     """ Fabric script that  distributes
     an archive to your web servers, using
     the function do_deploy"""
-    if exist(archive_path):
+    # archive_path = versions/web_static_220920223.tgz
+    if exists(archive_path):
         file_name = archive_path[9:]
+        # file_name = web_static_220920223.tgz
         name = file_name[:-4]
+        # name = web_static_220920223
         # Upload the archive to the /tmp/ directory of the webserver
         directory = '/tmp/{}'.format(file_name)
-        # directory = /tmp/web_static_89808988.tgz
         put(archive_path, directory)
-        f_web = "/data/web_static/releases/{}/".format(name)
+        # Uncompress to data/web_static/releases/<archive>
+        f_web = "/data/web_static/releases/"
         # Uncompress the archive to the folder /data/web_static/
-        run('mkdir -p {}'.format(f_web))
+        # run('mkdir -p {}'.format(f_web))
+        run('mv {} {}'.format(directory, f_web))
         # /data/web_static/releases/web_static_098098988
-        run('tar -xf {} -C {}'.format(directory, f_web))
+        run('tar -xf {}{}'.format(f_web, name))
         # Delete the archive from the web server
         # Delete /tmp/web_static_898980.tgz
-        run('rm /tmp/{}'.format(file_name))
-        run("mv -f {}web_static/* {}".format(f_web, f_web))
-        run("rm -rf {}web_static".format(f_web))
+        run('rm {}{}'.format(f_web, file_name))
+        # Delete simbolic Link
+        # run("rm -rf {}web_static".format(f_web))
         run("rm -rf /data/web_static/current")
-        run("ln -s {} /data/web_static/current".format(f_web))
+        run("ln -s {}name /data/web_static/current".format(f_web))
         return True
     return False
