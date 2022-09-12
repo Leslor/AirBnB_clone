@@ -46,7 +46,7 @@ class DBStorage:
                                   == cls__name, cls_all))
         # for i in cls_all:
         #     del i.__dict__['_sa_instance_state']
-        dc = {f"{i.__class__.__name__}.{i.id}": i for i in cls_all}
+        dc = {"{}.{}".format(i.__class__.__name__, i.id): i for i in cls_all}
         return dc
 
     def new(self, obj):

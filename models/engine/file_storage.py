@@ -32,7 +32,8 @@ class FileStorage:
     def delete(self, cls=None):
         """Deletes a instance"""
         if (cls):
-            FileStorage.__objects.pop(f"{cls.__class__.__name__}.{cls.id}")
+            FileStorage.__objects.pop("{}.{}".format(
+                cls.__class__.name__, cls.id))
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
@@ -40,7 +41,7 @@ class FileStorage:
             N = cls.__name__
             d = list(filter(lambda x: x.__class__.__name__ == N,
                             FileStorage.__objects.values()))
-            return {f"{N}.{i.id}": i for i in d}
+            return {"{}.{}".format(N, i.id): i for i in d}
         return FileStorage.__objects
 
     def reload(self):
